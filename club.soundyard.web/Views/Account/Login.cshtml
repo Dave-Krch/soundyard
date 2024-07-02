@@ -15,6 +15,8 @@
                     <h4>Use a local account to log in.</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    
                     <div class="row">
                         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
                         <div class="col-md-10">
@@ -22,6 +24,8 @@
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                   
+
                     <div class="row">
                         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
                         <div class="col-md-10">
