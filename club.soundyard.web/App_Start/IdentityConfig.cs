@@ -14,6 +14,37 @@ using club.soundyard.web.Models;
 
 namespace club.soundyard.web
 {
+    public static class IdentityConfig
+    {
+        public static void SeedRoles()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            // Check if roles exist, if not, create them
+            if (!roleManager.RoleExists("admin"))
+            {
+                var role = new ApplicationRole
+                {
+                    Name = "admin",
+                    Agreement = "Admin Agreement Text"
+                };
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("user"))
+            {
+                var role = new ApplicationRole
+                {
+                    Name = "user",
+                    Agreement = "User Agreement Text"
+                };
+                roleManager.Create(role);
+            }
+        }
+    }
+
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

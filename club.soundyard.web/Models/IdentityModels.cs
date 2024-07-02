@@ -30,4 +30,15 @@ namespace club.soundyard.web.Models
             return new ApplicationDbContext();
         }
     }
+
+    public class ApplicationRole : IdentityRole
+    {
+        public string Agreement { get; set; }
+
+        public ApplicationRole() : base() { }
+
+        public ApplicationRole(string roleName, string agreement) : base(roleName) {
+            Agreement = agreement;
+        }
+    }
 }
