@@ -180,7 +180,7 @@ namespace club.soundyard.web.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     // Uncomment to debug locally <- opens confirmation page without sending email
-                    // TempData["ViewBagLink"] = callbackUrl;
+                    TempData["ViewBagLink"] = callbackUrl;
 
                     ViewBag.Message = "Check your email and confirm your account, you must be confirmed " + "before you can log in.";
 
