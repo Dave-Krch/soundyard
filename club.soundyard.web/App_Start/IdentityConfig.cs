@@ -11,6 +11,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using club.soundyard.web.Models;
+using System.Configuration;
+using System.Net.Mail;
+using System.Net;
 
 namespace club.soundyard.web
 {
@@ -47,10 +50,46 @@ namespace club.soundyard.web
 
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            await ConfigSmtpAsync(message);
+        }
+
+        private async Task ConfigSmtpAsync(IdentityMessage message)
+        {
+            
+            var smtpClient = new SmtpClient
+            {
+                Host = ConfigurationManager.AppSettings["smtpHost"],
+                Port = int.Parse(ConfigurationManager.AppSettings["smtpPort"]),
+                EnableSsl = bool.Parse(ConfigurationManager.AppSettings["enableSsl"]),
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+
+                /*
+                Credentials = null
+                */
+
+                Credentials = new NetworkCredential(
+                ConfigurationManager.AppSettings["mailAccount"],
+                ConfigurationManager.AppSettings["mailPassword"]
+            )
+            };
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(ConfigurationManager.AppSettings["mailFromAddress"], ConfigurationManager.AppSettings["mailFromName"]),
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true
+            };
+
+            mailMessage.To.Add(message.Destination);
+
+            await smtpClient.SendMailAsync(mailMessage);
+            
+
+          
         }
     }
 
