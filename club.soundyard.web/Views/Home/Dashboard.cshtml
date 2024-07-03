@@ -3,4 +3,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dashboard<</h2>>
+<h2>Dashboard</h2>
+@if (ViewBag.RoleAgreements != null && ViewBag.RoleAgreements.Count > 0)
+{
+    <p>Your agreements:</p>
+    <ul>
+        @foreach (var agreement in ViewBag.RoleAgreements)
+        {
+            <li>@agreement</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No agreements found.</p>
+}

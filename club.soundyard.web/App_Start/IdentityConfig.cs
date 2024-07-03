@@ -57,7 +57,7 @@ namespace club.soundyard.web
 
         private async Task ConfigSmtpAsync(IdentityMessage message)
         {
-            
+
             var smtpClient = new SmtpClient
             {
                 Host = ConfigurationManager.AppSettings["smtpHost"],
@@ -66,14 +66,13 @@ namespace club.soundyard.web
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
 
-                /*
                 Credentials = null
-                */
 
+                /*
                 Credentials = new NetworkCredential(
                 ConfigurationManager.AppSettings["mailAccount"],
-                ConfigurationManager.AppSettings["mailPassword"]
-            )
+                ConfigurationManager.AppSettings["mailPassword"])
+                */
             };
 
             var mailMessage = new MailMessage
@@ -87,9 +86,6 @@ namespace club.soundyard.web
             mailMessage.To.Add(message.Destination);
 
             await smtpClient.SendMailAsync(mailMessage);
-            
-
-          
         }
     }
 
