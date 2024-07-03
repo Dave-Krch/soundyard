@@ -23,7 +23,8 @@ namespace club.soundyard.web
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css",
+                        "~/Content/dashboard.css",
+                        "~/Content/bootstrap.min.css",
                         "~/Content/site.css"));
         }
     }
