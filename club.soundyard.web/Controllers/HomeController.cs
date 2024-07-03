@@ -10,6 +10,7 @@ namespace club.soundyard.web.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        /*
         public ActionResult Index()
         {
             return View();
@@ -27,6 +28,25 @@ namespace club.soundyard.web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        */
+
+        [Authorize]
+        public ActionResult Administration()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Report()
+        {
             return View();
         }
     }
