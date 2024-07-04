@@ -31,6 +31,7 @@ namespace club.soundyard.web.Models
         }
     }
 
+    //IdentityRole extended with Agreement
     public class ApplicationRole : IdentityRole
     {
         public string Agreement { get; set; }

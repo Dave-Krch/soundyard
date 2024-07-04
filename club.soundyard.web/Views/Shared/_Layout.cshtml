@@ -16,6 +16,8 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0 p-2">Soundyard Club</a>
 
+        @* Display Login/Register or LogOff *@
+
         @if (Request.IsAuthenticated)
         {
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -42,6 +44,8 @@
         }
 
     </nav>
+
+    @* Side panel *@
 
     <div class="container">
         <div class="row">

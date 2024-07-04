@@ -12,41 +12,10 @@ namespace club.soundyard.web.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
-        /*
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        [Authorize]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        */
-
-        [Authorize]
-        public ActionResult Administration()
-        {
-            return View();
-        }
-
-        // GET: Dashboard
+       
         [Authorize]
         public ActionResult Dashboard()
         {
-
-            Console.WriteLine("tady");
-
             var userId = User.Identity.GetUserId();
 
             using (var context = new ApplicationDbContext())
@@ -71,6 +40,12 @@ namespace club.soundyard.web.Controllers
                 }
             }
 
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Administration()
+        {
             return View();
         }
 
