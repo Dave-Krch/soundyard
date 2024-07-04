@@ -19,13 +19,13 @@ namespace club.soundyard.web
 {
     public static class IdentityConfig
     {
+        //Adding admin an user roles
         public static void SeedRoles()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            // Check if roles exist, if not, create them
             if (!roleManager.RoleExists("admin"))
             {
                 var role = new ApplicationRole
@@ -65,10 +65,9 @@ namespace club.soundyard.web
                 EnableSsl = bool.Parse(ConfigurationManager.AppSettings["enableSsl"]),
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-
                 Credentials = null
 
-                /*
+                /* Used for testing with Google smtp
                 Credentials = new NetworkCredential(
                 ConfigurationManager.AppSettings["mailAccount"],
                 ConfigurationManager.AppSettings["mailPassword"])
